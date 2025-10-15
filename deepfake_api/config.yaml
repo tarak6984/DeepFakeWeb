@@ -1,0 +1,65 @@
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  cors_origins: ["http://localhost:3000", "http://127.0.0.1:3000"]
+  max_file_size: 100  # MB
+  upload_dir: "uploads"
+  temp_dir: "temp"
+
+models:
+  image:
+    primary: "efficientnet-b7-deepfakes"
+    secondary: "xception-deepfakes"
+    models_dir: "models/image"
+    batch_size: 16  # Increased for faster processing
+    input_size: 224
+    confidence_threshold: 0.70
+    max_resolution: 1920  # Resize large images
+    fast_resize: true
+    
+  audio:
+    primary: "rawnet2-antispoofing"
+    secondary: "aasist-deepfake"
+    models_dir: "models/audio"
+    sample_rate: 16000
+    duration: 3  # Further reduced for speed
+    confidence_threshold: 0.70
+    max_segments: 5  # Limit segments for large files
+    skip_vad: true  # Skip voice activity detection for speed
+    
+  video:
+    primary: "faceforensics-detector"
+    secondary: "celeb-df-detector"
+    models_dir: "models/video"
+    frame_sampling: "smart"  # Smart sampling instead of uniform
+    frames_per_analysis: 15  # Reduced from 30 for speed
+    confidence_threshold: 0.70
+    max_resolution: 1280  # Resize large videos
+    skip_frames: 3  # Process every 3rd frame
+
+processing:
+  gpu_enabled: true
+  device: 'auto'  # 'auto', 'cpu', 'cuda', 'mps'
+  parallel_models: false  # Disable for single model optimization
+  max_threads: 8  # Increased for large files
+  cache_enabled: false
+  fast_mode: true
+  ultra_fast_mode: true  # New ultra fast mode
+  num_workers: 8  # Increased workers
+  batch_processing: true
+  cache_size: 2000  # Increased cache size
+  memory_optimization: true
+  lazy_loading: true
+  preprocessing_threads: 4
+  chunk_size: 1024  # KB chunks for streaming
+
+detection_thresholds:
+  high_confidence: 0.85
+  medium_confidence: 0.70
+  low_confidence: 0.50
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "deepfake_api.log"

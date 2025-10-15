@@ -1,0 +1,11 @@
+---
+title: "🛡️ Deepfake Detective - VS Code Setup Guide"
+subtitle: "Complete Installation and Development Guide"
+author: "Deepfake Detective Team"
+date: "October 2024"
+abstract: |
+  This comprehensive guide will help you set up and run the Deepfake Detective application 
+  using VS Code. The application features a modern Next.js frontend with a powerful local 
+  AI backend for unlimited deepfake detection.
+keywords: [deepfake, detection, AI, VS Code, setup, local processing]
+---
