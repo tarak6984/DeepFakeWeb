@@ -41,3 +41,23 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Large model files (too big for deployment)
+/deepfake_api/models/
+*.pth
+*.bin
+*.safetensors
+*.model
+*.h5
+*.pb
+*.onnx
+
+# Cache and temp files
+/cache/
+/temp/
+/uploads/
+*.log
+*.pyc
+__pycache__/
+
+.vercel
